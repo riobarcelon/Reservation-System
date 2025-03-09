@@ -1,0 +1,119 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #4D55CC, #211C84);
+}
+
+.Signup-Form {
+    background: linear-gradient(95deg, #B5A8D5, #7A73D1);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box; /* Added for better responsiveness */
+}
+
+.Title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.Info, .Pass {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4b6cb7;
+}
+
+.Signup {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.signin-btn {
+    background: #4b6cb7;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.signin-btn:hover {
+    background: #182848;
+}
+
+.password-container {
+    position: relative;
+    width: 100%; /* Changed to 100% for responsiveness */
+    max-width: 250px; /* Added max-width for better control */
+}
+
+@media screen and (max-width: 768px) {
+    .Signup-Form {
+        padding: 30px;
+        margin: 10px;
+        width: 90%; /* Adjusted width for better responsiveness */
+    }
+
+    .Title {
+        font-size: 1.8em;
+    }
+
+    input {
+        font-size: 15px;
+    }
+
+    .signin-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Signup-Form {
+        padding: 20px;
+        margin: 20px;
+        width: 90%;
+    }
+    
+    .Title {
+        font-size: 1.5em;
+    }
+    
+    input {
+        font-size: 14px;
+    }
+    
+    .signin-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+}
