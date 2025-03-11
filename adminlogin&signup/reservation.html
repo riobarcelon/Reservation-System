@@ -3,10 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Admin</title>
   <link rel="stylesheet" href="home.css">
   <script type="text/javascript" src="app.js" defer></script>
+  <title>Reservation | Admin</title>
 </head>
+<footer style="text-align: center; position: absolute; bottom: 0; width: 100%; color: #e6e6ef;">
+  <p>&copy;2025 Kiwii. All Rights Reserved.</p>
+</footer>
+<style>
+  .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .custom-select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .custom-select select {
+    appearance: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+  }
+  .custom-arrow {
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+  .custom-select:hover .custom-arrow {
+    transform: rotate(-135deg);
+  }
+</style>
 <body>
   <nav id="sidebar">
     <ul>
@@ -16,7 +58,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/></svg>
         </button>
       </li>
-      <li class="active">
+      <li>
         <a href="home.html">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/></svg>
           <span>Home</span>
@@ -28,9 +70,9 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li>
+      <li class="active">
         <a href="reservation.html">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m221-313 142-142q12-12 28-11.5t28 12.5q11 12 11 28t-11 28L250-228q-12 12-28 12t-28-12l-86-86q-11-11-11-28t11-28q11-11 28-11t28 11l57 57Zm0-320 142-142q12-12 28-11.5t28 12.5q11 12 11 28t-11 28L250-548q-12 12-28 12t-28-12l-86-86q-11-11-11-28t11-28q11-11 28-11t28 11l57 57Zm339 353q-17 0-28.5-11.5T520-320q0-17 11.5-28.5T560-360h280q17 0 28.5 11.5T880-320q0 17-11.5 28.5T840-280H560Zm0-320q-17 0-28.5-11.5T520-640q0-17 11.5-28.5T560-680h280q17 0 28.5 11.5T880-640q0 17-11.5 28.5T840-600H560Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e8eaed"><path d="M12 2C10.34 2 9 3.34 9 5c0 .55.22 1.05.59 1.41L12 9l2.41-2.59C14.78 6.05 15 5.55 15 5c0-1.66-1.34-3-3-3zm0 16c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0-2c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>
           <span>Reservation</span>
         </a>
       </li>
@@ -60,20 +102,106 @@
           <span>Profile</span>
         </a>
       </li>
+      <li>
+        <a href="#" onclick="confirmLogout(event)" style="position: absolute; bottom: 35px;">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-640v-80h160v80h-160Zm0 160h160v80h-160v-80Zm0 160h160v80h-160v-80Zm-160-160h80v80h-80v-80Zm0-160h80v80h-80v-80Zm0 320h80v80h-80v-80Zm-160-160h80v80h-80v-80Zm0-160h80v80h-80v-80Zm0 320h80v80h-80v-80Zm320-320h80v80h-80v-80Zm0-160h80v80h-80v-80Zm0 320h80v80h-80v-80Z"/></svg>
+          <span>Logout</span>
+        </a>
+      </li>
     </ul>
   </nav>
   <main>
-    <div class="container">
-      <h2>Reservation</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis porro iure quaerat aliquam! Optio dolorum in eum provident, facilis error repellendus excepturi enim dolor deleniti adipisci consectetur doloremque, unde maiores odit sapiente. Atque ab necessitatibus laboriosam consequatur eius similique, ex dolorum eum eaque sequi id veritatis voluptates perspiciatis, cupiditate pariatur.</p>
-    </div>
-    <div class="container">
-      <h2>Example Heading</h2>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic aliquid corrupti, tenetur fuga magnam necessitatibus blanditiis quod sint excepturi laborum esse alias labore molestias adipisci, nostrum corporis ex maiores quis dolore quidem asperiores odio ad fugit eos! Delectus modi quas ipsa deleniti consequuntur nihil, hic in ipsum exercitationem blanditiis natus, ex, expedita eos. Excepturi quidem harum hic nam magnam deserunt illum quis dolorum eos ipsum ut natus sapiente sit, officia obcaecati assumenda tempore molestias? In fugiat iure laboriosam quasi, eum suscipit, harum autem saepe ut, soluta aspernatur ducimus eos magnam quidem officiis. Laboriosam nemo explicabo delectus, et quos vero cum?</p>
-    </div>
-    <div class="container">
-      <h2>Lorem Ipsum</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore repudiandae labore veniam reprehenderit voluptatum, laboriosam perferendis fuga, dolore quam quas nostrum totam sunt esse expedita. Vero distinctio omnis accusantium. Quisquam ullam saepe cupiditate magni numquam totam perspiciatis error velit, debitis veniam labore possimus aut sunt, reiciendis natus. Impedit provident voluptatum nulla fuga error a magnam, corporis natus aperiam fugit quod perferendis quos quaerat, numquam sequi doloribus tenetur dolorem voluptate deleniti, odio minus. Deserunt eius quasi odit voluptas unde voluptatum dicta cumque exercitationem soluta beatae porro distinctio, delectus officiis, nobis officia ullam necessitatibus, rem natus corrupti nam! Est, nihil molestias fugiat sed quae enim commodi expedita soluta tempore molestiae fuga adipisci rem esse voluptates quos, ut quasi sunt ad a perspiciatis ducimus maxime animi. Adipisci officia doloribus magni alias maiores ab quo, eos mollitia sint esse. Labore odio, architecto nihil quaerat soluta blanditiis impedit laudantium esse officiis dolorum dolore libero, id sequi minima incidunt eum facilis itaque distinctio. Voluptas doloremque minus reiciendis ex beatae laudantium cum sequi repellat blanditiis molestiae. Cumque, libero nulla! Sit, quisquam magni dolore consectetur odio impedit adipisci voluptas ab, laboriosam autem nihil nam est ipsa excepturi obcaecati eos neque! Omnis similique qui veritatis. Repellat magni dolorem, facilis eaque, harum molestias, delectus est adipisci laudantium velit optio blanditiis debitis? Tenetur totam maiores animi officiis eligendi expedita nemo corrupti distinctio. Cum libero soluta beatae doloribus sit, repellendus nobis vel obcaecati velit dolorem voluptate magnam inventore quas pariatur quam reprehenderit molestiae hic sunt dicta illo amet quis magni accusamus sequi? Vel quis, dolores iusto suscipit excepturi laboriosam repellat consectetur! Maiores deserunt, pariatur nesciunt consequuntur recusandae minima assumenda consequatur inventore natus debitis illo velit voluptatum necessitatibus qui aspernatur illum impedit magni dignissimos ea, molestias tempora corporis, asperiores iusto possimus. Libero expedita aspernatur officia totam dolorum culpa, minus, alias adipisci eligendi suscipit voluptates, magnam laudantium? Inventore cupiditate perspiciatis mollitia excepturi, voluptatibus ducimus expedita provident. Dicta, odit. Odio, qui repudiandae! Maiores dignissimos, magnam deleniti reprehenderit ex cum ea eveniet placeat quae, ad at perspiciatis nobis corporis doloribus voluptatem nulla aliquam sunt accusamus facere quaerat necessitatibus ipsa! Nam quisquam dicta minima commodi nostrum. Exercitationem necessitatibus optio cumque voluptate modi amet consequuntur similique ex inventore explicabo doloremque esse sed sequi nemo rem, nostrum ullam. Totam repellat ut ipsa quisquam rem, nulla, suscipit debitis atque earum quis voluptates quaerat exercitationem architecto repellendus placeat, tenetur incidunt distinctio consectetur reiciendis minima officiis aliquam? Ipsum sequi hic officia iste a. Blanditiis, dicta! Eveniet molestias ut natus odio fugiat cum necessitatibus, architecto, quo a quisquam autem porro explicabo ipsam, nostrum deserunt possimus expedita eum est corporis quibusdam cupiditate! Fugiat, quaerat saepe. Harum modi eligendi beatae alias fugiat. Nostrum cum nisi saepe dicta iste cupiditate, deserunt omnis, doloremque a distinctio eum rem adipisci ab? Sapiente, dicta ipsam blanditiis earum omnis necessitatibus temporibus, excepturi accusantium delectus quo quod iusto ad aliquam nemo ducimus ab nobis inventore sequi veritatis? Nulla, dolorem. Voluptas, obcaecati non facilis repellendus ratione officiis veritatis, modi culpa rerum placeat voluptatum quia ex? Officia quos dolorum repellat deserunt voluptas praesentium.</p>
+    <div class="random-class-1">
+      <h2>Reservation Form</h2>
+      <form>
+        <table class="reservation-table">
+          <tr>
+            <td class="table-cell"><label class="reservation-label" for="idNumber">ID Number:</label></td>
+            <td class="table-cell"><input class="reservation-input" type="text" id="idNumber" name="idNumber" placeholder="202512345"></td>
+          </tr>
+          <tr>
+            <td class="table-cell"><label class="reservation-label" for="lastName">Last Name:</label></td>
+            <td class="table-cell"><input class="reservation-input" type="text" id="lastName" name="lastName" placeholder="e.g. Smith"></td>
+          </tr>
+          <tr>
+            <td class="table-cell"><label class="reservation-label" for="firstName">First Name:</label></td>
+            <td class="table-cell"><input class="reservation-input" type="text" id="firstName" name="firstName" placeholder="e.g. John"></td>
+          </tr>
+          <tr>
+            <td class="table-cell"><label class="reservation-label" for="middleName">Middle Name:</label></td>
+            <td class="table-cell"><input class="reservation-input" type="text" id="middleName" name="middleName" placeholder="e.g. Doe"></td>
+          </tr>
+          <tr>
+            <td class="table-cell"><label class="reservation-label" for="campus">Campus:</label></td>
+            <td class="table-cell"><input class="reservation-input" type="text" id="campus" name="campus" placeholder="TriCamp/MainCamp"></td>
+          </tr>
+          <tr>
+            <td class="table-cell"><label class="reservation-label" for="borrow">Borrow:</label></td>
+            <td class="table-cell">
+              <div class="custom-select-wrapper">
+                <div class="custom-select">
+                  <select class="reservation-input" id="borrow" name="borrow">
+                    <option value="projector">🎥 -SELECT-</option>
+                    <option value="projector">🎥 Projector</option>
+                    <option value="extension_wire">🔌 Extension Wire</option>
+                    <option value="hdmi">🔗 HDMI</option>
+                    <option value="vga">🔗 VGA</option>
+                    <option value="dvi">🔗 DVI</option>
+                    <option value="displayport">🔗 DisplayPort</option>
+                    <option value="mini_displayport">🔗 Mini DisplayPort</option>
+                    <option value="hdmi_displayport_audio_pass_through">🔊 HDMI & DisplayPort Audio Pass-through</option>
+                    <option value="usb_ports">🔌 USB Ports (USB-A, USB-B, USB-C)</option>
+                    <option value="ethernet">🌐 Ethernet</option>
+                  </select>
+                  <span class="custom-arrow"></span>
+                </div>
+              </div>
+            </td>
+              <td class="table-cell">
+                <div class="custom-select-wrapper">
+                  <div class="custom-select">
+                    <select class="reservation-input" id="borrow" name="borrow">
+                      <option value="projector">🎥 -SELECT-</option>
+                      <option value="projector">🎥 Projector</option>
+                      <option value="extension_wire">🔌 Extension Wire</option>
+                      <option value="hdmi">🔗 HDMI</option>
+                      <option value="vga">🔗 VGA</option>
+                      <option value="dvi">🔗 DVI</option>
+                      <option value="displayport">🔗 DisplayPort</option>
+                      <option value="mini_displayport">🔗 Mini DisplayPort</option>
+                      <option value="hdmi_displayport_audio_pass_through">🔊 HDMI & DisplayPort Audio Pass-through</option>
+                      <option value="usb_ports">🔌 USB Ports (USB-A, USB-B, USB-C)</option>
+                      <option value="ethernet">🌐 Ethernet</option>
+                    </select>
+                    <span class="custom-arrow"></span>
+                  </div>
+                </div>
+              </td>
+              <td class="table-cell">
+                <div class="custom-select-wrapper">
+                  <div class="custom-select">
+                    <select class="reservation-input" id="borrow" name="borrow">
+                      <option value="projector">🎥 -SELECT-</option>
+                      <option value="projector">🎥 Projector</option>
+                      <option value="extension_wire">🔌 Extension Wire</option>
+                      <option value="hdmi">🔗 HDMI</option>
+                      <option value="vga">🔗 VGA</option>
+                      <option value="dvi">🔗 DVI</option>
+                      <option value="displayport">🔗 DisplayPort</option>
+                      <option value="mini_displayport">🔗 Mini DisplayPort</option>
+                      <option value="hdmi_displayport_audio_pass_through">🔊 HDMI & DisplayPort Audio Pass-through</option>
+                      <option value="usb_ports">🔌 USB Ports (USB-A, USB-B, USB-C)</option>
+                      <option value="ethernet">🌐 Ethernet</option>
+                    </select>
+                    <span class="custom-arrow"></span>
+                  </div>
+                </div>
+              </td>
+            </td>
+          </tr>
+        </table>
+        <button class="reservation-button" type="submit">Submit</button>
+      </form>
     </div>
   </main>
 </body>
