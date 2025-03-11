@@ -3,8 +3,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 93vh;
     background: linear-gradient(45deg, #4D55CC, #211C84);
+    flex-direction: column;
 }
 
 .Signup-Form {
@@ -116,4 +117,8 @@ input:focus {
         padding: 10px;
         font-size: 14px;
     }
+}
+
+footer {
+    color: #e6e6ef;
 }

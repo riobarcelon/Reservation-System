@@ -28,35 +28,10 @@
                 <p style="color: #721c24; text-align: center; font-size: 13px;"><strong>Gentle Reminder:</strong> Signing Up is only for chosen personel! Ask the admin first if you wish to Login</p>
             </div>
         </form>               
-        <script>
-            document.getElementById('loginForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                const formData = new FormData(this);
-                
-                fetch('validate.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data === "success") {
-                        alert('Login successful!');
-                        window.location.href = 'home.html';
-                    } else {
-                        alert('Invalid username or password!');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('May problema sa pag-login. Palihug sulayi pag-usab.');
-                });
-            });
-        </script>
     </div>
-   <!-- <script src="main.js"></script> --> 
+        <script src="main.js"></script>
 </body>
-<!-- <footer style="text-align: center; margin-top: 20px;">
+<footer style="text-align: center; position: absolute; bottom: 0; width: 100%;">
     <p>&copy;2025 Kiwii. All Rights Reserved.</p>
-</footer> -->
+</footer>
 </html>
