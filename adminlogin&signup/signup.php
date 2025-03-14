@@ -1,7 +1,5 @@
 <?php
-// signup.php
 
-// Database connection
 $servername = "localhost"; // o ang iyong database server
 $username = "root"; // ilagay ang iyong database username
 $password = ""; // ilagay ang iyong database password

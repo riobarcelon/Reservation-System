@@ -5,9 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile | Admin</title>
   <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="profile.css">
   <script type="text/javascript" src="app.js" defer></script>
+  <script type="text/javascript" src="profile.js" defer></script>
+  <script src="security.js"></script>
+  <script src="cache.js"></script>
+  <script src="compression.js"></script>
+  <script src="rateLimit.js"></script>
 </head>
 <body>
+  <header class="top-header">
+    <div class="header-right">
+      <div class="profile-preview">
+        <img id="headerProfilePic" src="default-avatar.png" alt="Profile Picture">
+        <div class="profile-dropdown">
+          <span id="headerUserName">Admin</span>
+          <div class="dropdown-content">
+            <a href="profile.html">My Profile</a>
+            <a href="#" onclick="confirmLogout(event)">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
   <nav id="sidebar">
     <ul>
       <li>
@@ -37,12 +57,12 @@
       <li>
         <button onclick=toggleSubMenu(this) class="dropdown-btn">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/></svg>
-          <span>Create</span>
+          <span>Other</span>
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z"/></svg>
         </button>
         <ul class="sub-menu">
           <div>
-            <li><a href="#">Folder</a></li>
+            <li><a href="smccprint.html">Print</a></li>
             <li><a href="#">Document</a></li>
             <li><a href="#">Project</a></li>
           </div>
@@ -71,7 +91,47 @@
   <main>
     <div class="container">
       <h2>Profile</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis porro iure quaerat aliquam! Optio dolorum in eum provident, facilis error repellendus excepturi enim dolor deleniti adipisci consectetur doloremque, unde maiores odit sapiente. Atque ab necessitatibus laboriosam consequatur eius similique, ex dolorum eum eaque sequi id veritatis voluptates perspiciatis, cupiditate pariatur.</p>
+      <div class="profile-section">
+        <h3>CHANGE YOUR PROFILE</h3>
+        
+        <div class="profile-content">
+          <div class="left-section">
+            <div class="profile-image-container">
+              <img src="default-avatar.png" alt="Profile Picture" id="profilePic">
+              <input type="file" id="photoInput" accept="image/*" style="display: none;">
+            </div>
+            <button class="change-photo-btn" onclick="document.getElementById('photoInput').click()">Change photo</button>
+          </div>
+          
+          <div class="profile-form">
+            <div class="form-group-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="Enter first name">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Enter last name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" placeholder="Enter email">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Contact Number</label>
+                <input type="text" placeholder="Enter contact number">
+              </div>
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" placeholder="Enter city">
+              </div>
+            </div>
+            <button class="save-btn">SAVE</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 </body>
