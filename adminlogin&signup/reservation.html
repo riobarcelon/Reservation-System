@@ -3,49 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="home.css">
   <script type="text/javascript" src="app.js" defer></script>
+  <script src="security.js"></script>
+  <script src="cache.js"></script>
+  <script src="compression.js"></script>
+  <script src="rateLimit.js"></script>
+  <script src="reservation.js"></script>
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="reservation.css">
   <title>Reservation | Admin</title>
 </head>
-<style>
-  .custom-select-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-  }
-  .custom-select {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .custom-select select {
-    appearance: none;
-    border: none;
-    background: transparent;
-    width: 100%;
-    font-size: 16px;
-    color: #333;
-    cursor: pointer;
-  }
-  .custom-arrow {
-    position: absolute;
-    right: 10px;
-    pointer-events: none;
-    border: solid #333;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(45deg);
-    transition: transform 0.3s ease;
-  }
-  .custom-select:hover .custom-arrow {
-    transform: rotate(-135deg);
-  }
-</style>
 <body>
   <nav id="sidebar">
     <ul>
@@ -76,12 +44,12 @@
       <li>
         <button onclick=toggleSubMenu(this) class="dropdown-btn">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/></svg>
-          <span>Create</span>
+          <span>Other</span>
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z"/></svg>
         </button>
         <ul class="sub-menu">
           <div>
-            <li><a href="#">Folder</a></li>
+            <li><a href="smccprint.html">Print</a></li>
             <li><a href="#">Document</a></li>
             <li><a href="#">Project</a></li>
           </div>
@@ -110,29 +78,29 @@
   <main>
     <div class="random-class-1">
       <h2>Reservation Form</h2>
-      <form>
+      <form action="process_reservation.php" method="POST">
         <table class="reservation-table">
           <tr>
             <td class="table-cell"><label class="reservation-label" for="idNumber">ID Number:</label></td>
-            <td class="table-cell"><input class="reservation-input" type="text" id="idNumber" name="idNumber" placeholder="202512345"></td>
+            <td class="table-cell"><input class="reservation-input" type="text" name="idNumber" id="idNumber" placeholder="202512345" required></td>
           </tr>
           <tr>
             <td class="table-cell"><label class="reservation-label" for="lastName">Last Name:</label></td>
-            <td class="table-cell"><input class="reservation-input" type="text" id="lastName" name="lastName" placeholder="e.g. Smith"></td>
+            <td class="table-cell"><input class="reservation-input" type="text" name="lastName" id="lastName" placeholder="e.g. Smith" required></td>
           </tr>
           <tr>
             <td class="table-cell"><label class="reservation-label" for="firstName">First Name:</label></td>
-            <td class="table-cell"><input class="reservation-input" type="text" id="firstName" name="firstName" placeholder="e.g. John"></td>
+            <td class="table-cell"><input class="reservation-input" type="text" name="firstName" id="firstName" placeholder="e.g. John" required></td>
           </tr>
           <tr>
             <td class="table-cell"><label class="reservation-label" for="middleName">Middle Name:</label></td>
-            <td class="table-cell"><input class="reservation-input" type="text" id="middleName" name="middleName" placeholder="e.g. Doe"></td>
+            <td class="table-cell"><input class="reservation-input" type="text" name="middleName" id="middleName" placeholder="e.g. Doe"></td>
           </tr>
           <tr>
             <td class="table-cell"><label class="reservation-label" for="reservationDate">Date for Reservation:</label></td>
             <td class="table-cell">
               <div class="calendar-wrapper">
-                <input type="text" id="reservationDate" class="reservation-input datepicker" readonly placeholder="Select Date & Time">
+                <input type="text" name="reservationDate" id="reservationDate" class="reservation-input datepicker" readonly placeholder="Select Date" required>
                 <div id="calendar" class="calendar-popup">
                   <div class="calendar-header">
                     <button type="button" class="prev-month">&#10094;</button>
@@ -145,106 +113,121 @@
                   </div>
                   <div class="calendar-dates"></div>
                   <div class="calendar-time">
-                    <select id="timeSlot" class="reservation-input">
-                      <option value="">Choose Time Slot</option>
-                      <option value="08:00">8:00 AM</option>
-                      <option value="09:00">9:00 AM</option>
-                      <option value="10:00">10:00 AM</option>
-                      <option value="11:00">11:00 AM</option>
-                      <option value="13:00">1:00 PM</option>
-                      <option value="14:00">2:00 PM</option>
-                      <option value="15:00">3:00 PM</option>
-                      <option value="16:00">4:00 PM</option>
-                    </select>
                   </div>
                 </div>
               </div>
             </td>
           </tr>
-
+          <tr>
+            <td class="table-cell"><label class="reservation-label" for="timeSlot">Time Slot:</label></td>
+            <td class="table-cell">
+                <div class="custom-select-wrapper">
+                    <div class="custom-select">
+                        <select class="reservation-input" id="timeSlot" name="timeSlot" required>
+                            <option value="">⏰ Select Time Slot</option>
+                            <option value="08:00">🕐 8:00 AM</option>
+                            <option value="09:00">🕐 9:00 AM</option>
+                            <option value="10:00">🕐 10:00 AM</option>
+                            <option value="11:00">🕐 11:00 AM</option>
+                            <option value="13:00">🕐 1:00 PM</option>
+                            <option value="14:00">🕐 2:00 PM</option>
+                            <option value="15:00">🕐 3:00 PM</option>
+                            <option value="16:00">🕐 4:00 PM</option>
+                        </select>
+                        <span class="custom-arrow"></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
           <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const dateInput = document.getElementById('reservationDate');
-            const calendar = document.getElementById('calendar');
-            const calendarDates = document.querySelector('.calendar-dates');
-            const calendarTitle = document.querySelector('.calendar-title');
-            const prevMonth = document.querySelector('.prev-month');
-            const nextMonth = document.querySelector('.next-month');
-            
-            let currentDate = new Date();
-            let selectedDate = null;
-
-            dateInput.addEventListener('click', function() {
-              calendar.style.display = calendar.style.display === 'none' ? 'block' : 'none';
-              renderCalendar();
-            });
-
-            function renderCalendar() {
-              const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-              const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-              
-              calendarTitle.textContent = firstDay.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-              calendarDates.innerHTML = '';
-
-              for(let i = 0; i < firstDay.getDay(); i++) {
-                calendarDates.appendChild(document.createElement('div'));
-              }
-
-              for(let day = 1; day <= lastDay.getDate(); day++) {
-                const dateDiv = document.createElement('div');
-                dateDiv.classList.add('calendar-date');
-                dateDiv.textContent = day;
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-                if(dateObj < new Date().setHours(0,0,0,0)) {
-                  dateDiv.classList.add('disabled');
+                // Basic validation
+                const required = ['idNumber', 'lastName', 'firstName', 'reservationDate', 'timeSlot'];
+                let isValid = true;
+                
+                required.forEach(field => {
+                    if (!document.getElementById(field).value) {
+                        isValid = false;
+                        document.getElementById(field).classList.add('error');
+                    }
+                });
+                
+                if (isValid) {
+                    if (confirm('Are you sure you want to submit this reservation?')) {
+                        showNotification('Reservation submitted successfully!');
+                        this.submit();
+                    }
                 } else {
-                  dateDiv.addEventListener('click', () => selectDate(dateObj));
+                    showNotification('Please fill in all required fields', 'error');
                 }
-
-                calendarDates.appendChild(dateDiv);
-              }
+            });
+            
+            // Add notification function
+            function showNotification(message, type = 'success') {
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.textContent = message;
+                
+                // Styles for notification
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-20px);
+                    background-color: ${type === 'success' ? '#4CAF50' : '#f44336'};
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 5px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                    text-align: center;
+                    min-width: 200px;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Trigger animation
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(-50%) translateY(0)';
+                }, 100);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(-50%) translateY(-20px)';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
             }
-
-            function selectDate(date) {
-              selectedDate = date;
-              dateInput.value = date.toLocaleDateString();
-              calendar.style.display = 'none';
-              
-              document.querySelectorAll('.calendar-date').forEach(div => {
-                div.classList.remove('selected');
-              });
-              
-              event.target.classList.add('selected');
+            
+            // Check URL parameters for status messages
+            window.onload = function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const status = urlParams.get('status');
+                
+                if (status === 'success') {
+                    showNotification('Reservation submitted successfully!');
+                } else if (status === 'error') {
+                    showNotification(urlParams.get('message'), 'error');
+                }
             }
-
-            prevMonth.addEventListener('click', () => {
-              currentDate.setMonth(currentDate.getMonth() - 1);
-              renderCalendar();
-            });
-
-            nextMonth.addEventListener('click', () => {
-              currentDate.setMonth(currentDate.getMonth() + 1);
-              renderCalendar();
-            });
-
-            document.addEventListener('click', function(e) {
-              if (!calendar.contains(e.target) && e.target !== dateInput) {
-                calendar.style.display = 'none';
-              }
-            });
-          });
-          </script>
+            </script>
           <tr>
             <td class="table-cell"><label class="reservation-label" for="borrow">Campus:</label></td>
             <td class="table-cell">
               <div class="custom-select-wrapper">
                 <div class="custom-select">
-                  <select class="reservation-input" id="borrow" name="borrow">
-                    <option value="projector">🏢 -SELECT-</option>
-                    <option value="projector">🏫 Apagan Building</option>
-                    <option value="extension_wire">🏫 Triangulo Campus</option>
-                  </select>
+                  <select class="reservation-input" id="campus" name="campus" required>
+                    <option value="">🏢 -SELECT-</option>
+                    <option value="Apagan Building">🏫 Apagan Building</option>
+                    <option value="Triangulo Campus">🏫 Triangulo Campus</option>
+                </select>
                   <span class="custom-arrow"></span>
                 </div>
               </div>
@@ -253,12 +236,12 @@
             <td class="table-cell">
               <div class="custom-select-wrapper">
                 <div class="custom-select">
-                  <select class="reservation-input" id="borrow" name="borrow">
-                    <option value="projector">⚡ -SELECT-</option>
-                    <option value="projector">🎥 Projector</option>
-                    <option value="monitor">🖥️ Monitor</option>
-                    <option value="laptop">💻 Laptop</option>
-                  </select>
+                  <select class="reservation-input" id="equipment" name="equipment" required>
+                    <option value="">⚡ -SELECT-</option>
+                    <option value="Projector">🎥 Projector</option>
+                    <option value="Monitor">🖥️ Monitor</option>
+                    <option value="Laptop">💻 Laptop</option>
+                </select>
                   <span class="custom-arrow"></span>
                 </div>
               </div>
@@ -266,15 +249,15 @@
               <td class="table-cell">
                 <div class="custom-select-wrapper">
                   <div class="custom-select">
-                    <select class="reservation-input" id="borrow" name="borrow">
-                      <option value="projector">⚡ -SELECT-</option>
-                      <option value="hdmi">🔗 HDMI</option>
-                      <option value="vga">🔗 VGA</option>
-                      <option value="dvi">🔗 DVI</option>
-                      <option value="displayport">🔗 DisplayPort</option>
-                      <option value="mini_displayport">🔗 Mini DisplayPort</option>
-                      <option value="hdmi_displayport_audio_pass_through">🔊 HDMI & DisplayPort Audio</option>
-                    </select>
+                    <select class="reservation-input" id="cable_type" name="cable_type" required>
+                      <option value="">⚡ -SELECT-</option>
+                      <option value="HDMI">🔗 HDMI</option>
+                      <option value="VGA">🔗 VGA</option>
+                      <option value="DVI">🔗 DVI</option>
+                      <option value="DisplayPort">🔗 DisplayPort</option>
+                      <option value="Mini DisplayPort">🔗 Mini DisplayPort</option>
+                      <option value="HDMI & DisplayPort Audio">🔊 HDMI & DisplayPort Audio</option>
+                  </select>
                     <span class="custom-arrow"></span>
                   </div>
                 </div>
@@ -282,14 +265,14 @@
               <td class="table-cell">
                 <div class="custom-select-wrapper">
                   <div class="custom-select">
-                    <select class="reservation-input" id="borrow" name="borrow">
-                      <option value="projector">⚡ -SELECT-</option>
-                      <option value="extension_wire">🔌 Extension Wire</option>
-                      <option value="usb_ports">🔌 USB Ports (USB-A, B, C)</option>
-                      <option value="ethernet">🌐 Power over Ethernet</option>
-                      <option value="ethernet">🌐 Wi-Fi (IEEE 802.11)</option>
-                      <option value="ethernet">🌐 Microwave Links</option>
-                    </select>
+                    <select class="reservation-input" id="connection_type" name="connection_type" required>
+                      <option value="">⚡ -SELECT-</option>
+                      <option value="Extension Wire">🔌 Extension Wire</option>
+                      <option value="USB Ports">🔌 USB Ports (USB-A, B, C)</option>
+                      <option value="Power over Ethernet">🌐 Power over Ethernet</option>
+                      <option value="Wi-Fi">🌐 Wi-Fi (IEEE 802.11)</option>
+                      <option value="Microwave Links">🌐 Microwave Links</option>
+                  </select>
                     <span class="custom-arrow"></span>
                   </div>
                 </div>
@@ -302,7 +285,7 @@
     </div>
   </main>
 </body>
-<footer style="text-align: center; position: absolute; bottom: 0; width: 100%; color: #e6e6ef;">
+<!--<footer style="text-align: center; position: fixed; bottom: 0; width: 100%; color: #e6e6ef;">
   <p>&copy;2025 Kiwii. All Rights Reserved.</p>
-</footer>
+</footer> -->
 </html>

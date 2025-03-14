@@ -6,7 +6,6 @@
   <title>Dashboard | Admin</title>
   <link rel="stylesheet" href="home.css">
   <script type="text/javascript" src="app.js" defer></script>
-  <script type="text/javascript" src="dashboard.js" defer></script>
   <script src="security.js"></script>
   <script src="cache.js"></script>
   <script src="compression.js"></script>
@@ -27,7 +26,7 @@
           <span>Home</span>
         </a>
       </li>
-      <li class="active">
+      <li>
         <a href="dashboard.html">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M520-640v-160q0-17 11.5-28.5T560-840h240q17 0 28.5 11.5T840-800v160q0 17-11.5 28.5T800-600H560q-17 0-28.5-11.5T520-640ZM120-480v-320q0-17 11.5-28.5T160-840h240q17 0 28.5 11.5T440-800v320q0 17-11.5 28.5T400-440H160q-17 0-28.5-11.5T120-480Zm400 320v-320q0-17 11.5-28.5T560-520h240q17 0 28.5 11.5T840-480v320q0 17-11.5 28.5T800-120H560q-17 0-28.5-11.5T520-160Zm-400 0v-160q0-17 11.5-28.5T160-360h240q17 0 28.5 11.5T440-320v160q0 17-11.5 28.5T400-120H160q-17 0-28.5-11.5T120-160Zm80-360h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg>
           <span>Dashboard</span>
@@ -47,7 +46,7 @@
         </button>
         <ul class="sub-menu">
           <div>
-            <li><a href="smccprint.html">Print</a></li>
+            <li class="active"><a href="smccprint.html">Print</a></li>
             <li><a href="#">Document</a></li>
             <li><a href="#">Project</a></li>
           </div>
@@ -74,36 +73,8 @@
     </ul>
   </nav>
   <main>
-    <div class="dashboard">
-      <h2 style="text-align: center; font-size: 2.5em; color: #e6e6ef; margin-bottom: 20px;">Dashboard Statistics</h2>
-      <div class="table-container" style="display: flex; justify-content: space-around; margin-bottom: 40px;">
-        <div class="stat-card" style="background-color: #f0f0f0; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 45%;">
-          <h3 style="text-align: center; color: #333;">Online Users</h3>
-          <p id="online-users" style="font-size: 2em; text-align: center; color: #FF5722;">0</p>
-        </div>
-        <div class="stat-card" style="background-color: #f0f0f0; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 45%;">
-          <h3 style="text-align: center; color: #333;">Logged In Users</h3>
-          <p id="logged-in-users" style="font-size: 2em; text-align: center; color: #FF5722;">0</p>
-        </div>
-      </div>
-      <h3 style="text-align: center; font-size: 2em; color: #e6e6ef; margin-bottom: 20px;">User Login History</h3>
-      <div class="table-container" style="overflow-x: auto; margin-bottom: 40px;">
-        <table style="width: 100%; border-collapse: collapse;">
-          <thead>
-            <tr style="background-color: #1d116e; color: white;">
-              <th style="padding: 10px; text-align: left;">Username</th>
-              <th style="padding: 10px; text-align: left;">Login Date</th>
-            </tr>
-          </thead>
-          <tbody id="user-login-dates" style="background-color: #7A73D1;">
-          </tbody>
-        </table>
-      </div>
-      <div style="text-align: center;">
-        <button id="refresh-button" style="background-color: #6A5ACD; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em;">Refresh Data</button>
-      </div>
-    </div>
-  </main>
+
+    </main>
 </body>
 <footer style="text-align: center; position: fixed; bottom: 0; width: 100%; color: #e6e6ef;">
   <p>&copy;2025 Kiwii. All Rights Reserved.</p>
