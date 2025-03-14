@@ -1,0 +1,38 @@
+-- Create the database
+CREATE DATABASE reservation;
+
+-- Use the newly created database
+USE reservation;
+
+-- Create the config table
+CREATE TABLE config (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    id_number VARCHAR(20),
+    last_name VARCHAR(50),
+    first_name VARCHAR(50),
+    middle_name VARCHAR(50),
+    reservation_date DATE,
+    reservation_time TIME,
+    campus VARCHAR(50),
+    equipment VARCHAR(50),
+    cable_type VARCHAR(50),
+    connection_type VARCHAR(50)  -- Assuming you want to specify a type here
+);
+
+-- Create the signup table
+CREATE TABLE signup (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    fname VARCHAR(50),
+    lname VARCHAR(50),
+    usrname VARCHAR(50),
+    pass VARCHAR(50),
+    confirmpass VARCHAR(50)  -- Corrected to have a unique name
+);
+
+-- Create the user_sessions table with ENUM for status
+CREATE TABLE user_sessions (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    login_time DATETIME,
+    status ENUM('logged_in', 'logged_out')  -- Define possible status values
+);
