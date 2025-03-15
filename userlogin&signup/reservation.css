@@ -1,0 +1,38 @@
+
+  .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .custom-select {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .custom-select select {
+    appearance: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+  }
+  .custom-arrow {
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+  .custom-select:hover .custom-arrow {
+    transform: rotate(-135deg);
+  }
