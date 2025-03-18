@@ -78,7 +78,7 @@
         <p style="margin-top: 0; text-align: center;">The calendar displays the scheduled events. Please check it for updates.</p>
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
             <div id="calendar" style="width: 100%; max-width: 800px;">
-                <div class="calendar-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #4D55CC; color: white;">
+                <div class="calendar-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #4D55CC; color: rgb(255, 255, 255);">
                     <button onclick="prevMonth()" style="background: none; border: none; color: white; cursor: pointer;">&#10094;</button>
                     <h2 id="monthDisplay" style="margin: 0;"></h2>
                     <button onclick="nextMonth()" style="background: none; border: none; color: white; cursor: pointer;">&#10095;</button>
@@ -188,8 +188,7 @@
                         </table>
                     </div>
                 </div>
-                <button onclick="saveEvent()" style="padding: 12px 24px; font-size: 18px; background-color: #6A5ACD; color: #ffffff; border: none; border-radius: 30px; cursor: pointer; transition: background-color 0.3s, transform 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#ffffff" style="vertical-align: middle; margin-right: 8px;"><path d="M12 2C10.34 2 9 3.34 9 5c0 .55.22 1.05.59 1.41L12 9l2.41-2.59C14.78 6.05 15 5.55 15 5c0-1.66-1.34-3-3-3zm0 16c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0-2c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>
+                <button onclick="saveEvent()" style="padding: 12px 24px; font-size: 18px; background-color: #4401ff; color: #ffffff; border: none; border-radius: 30px; cursor: pointer; transition: background-color 0.3s, transform 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
                     <span style="font-weight: bold;">Save Event</span>
                 </button>
             </div>

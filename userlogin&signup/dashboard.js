@@ -51,4 +51,61 @@ function updateScheduledUsers() {
 }
 
 // Call the function to update the scheduled users on page load
-updateScheduledUsers(); 
+updateScheduledUsers();
+
+function loadUserData() {
+    // Halimbawa ng pagkuha ng data mula sa server
+    fetch('/api/user/reservations')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); // I-print ang data para sa debugging
+            populatePendingReservations(data.pending);
+            populateUserBookingHistory(data.history);
+            populateRejectedReservations(data.rejected);
+        })
+        .catch(error => console.error('Error fetching user data:', error));
+}
+
+function populatePendingReservations(reservations) {
+    const tbody = document.getElementById('pending-reservations');
+    tbody.innerHTML = ''; // Linisin ang kasalukuyang laman
+    reservations.forEach(reservation => {
+        const row = `<tr>
+            <td>${reservation.username}</td>
+            <td>${reservation.date}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+function populateUserBookingHistory(history) {
+    const tbody = document.getElementById('user-booking-history');
+    tbody.innerHTML = ''; // Linisin ang kasalukuyang laman
+    history.forEach(booking => {
+        const row = `<tr>
+            <td>${booking.username}</td>
+            <td>${booking.date}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+function populateRejectedReservations(rejected) {
+    const tbody = document.getElementById('rejected-reservations');
+    tbody.innerHTML = ''; // Linisin ang kasalukuyang laman
+    rejected.forEach(reservation => {
+        const row = `<tr>
+            <td>${reservation.username}</td>
+            <td>${reservation.date}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+// Tawagan ang loadUserData function kapag nag-load ang page
+document.addEventListener('DOMContentLoaded', loadUserData); 

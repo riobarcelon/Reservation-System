@@ -75,30 +75,62 @@
   </nav>
   <main>
     <div class="dashboard">
-      <h2 style="text-align: center; font-size: 2.5em; color: #e6e6ef; margin-bottom: 20px;">Dashboard Statistics</h2>
+      <h2 style="text-align: center; font-size: 2.5em; color: #e6e6ef; margin-bottom: 20px;">Dashboard ng mga Reservation</h2>
+      
       <div class="table-container" style="display: flex; justify-content: center; margin-bottom: 40px;">
         <div class="stat-card" style="background-color: #f0f0f0; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 45%; margin: 0 10px;">
-          <h3 style="text-align: center; color: #333;">Scheduled Users</h3>
-          <p id="scheduled-users" style="font-size: 2em; text-align: center; color: #FF5722;">0</p>
-        </div>
-      </div>
-      <div class="table-container" style="display: flex; justify-content: center; margin-bottom: 40px;">
-        <div class="stat-card" style="background-color: #f0f0f0; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 45%; margin: 0 10px;">
-          <h3 style="text-align: center; color: #333;">User Schedule History</h3>
+          <h3 style="text-align: center; color: #333;">Pending user Reservation</h3>
           <div style="overflow-x: auto; margin-top: 20px;">
             <table style="width: 100%; border-collapse: collapse;">
               <thead>
                 <tr style="background-color: #1d116e; color: white;">
                   <th style="padding: 10px; text-align: left;">Username</th>
-                  <th style="padding: 10px; text-align: left;">Scheduled Date</th>
+                  <th style="padding: 10px; text-align: left;">Date of Reservation</th>
                 </tr>
               </thead>
-              <tbody id="user-schedule-dates" style="background-color: #7A73D1;">
+              <tbody id="pending-reservations" style="background-color: #7A73D1;">
               </tbody>
             </table>
           </div>
         </div>
       </div>
+
+      <div class="table-container" style="display: flex; justify-content: center; margin-bottom: 40px;">
+        <div class="stat-card" style="background-color: #f0f0f0; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 45%; margin: 0 10px;">
+          <h3 style="text-align: center; color: #333;">User booking history</h3>
+          <div style="overflow-x: auto; margin-top: 20px;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="background-color: #1d116e; color: white;">
+                  <th style="padding: 10px; text-align: left;">Username</th>
+                  <th style="padding: 10px; text-align: left;">Date of Booking</th>
+                </tr>
+              </thead>
+              <tbody id="user-booking-history" style="background-color: #7A73D1;">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container" style="display: flex; justify-content: center; margin-bottom: 40px;">
+        <div class="stat-card" style="background-color: #f0f0f0; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 45%; margin: 0 10px;">
+          <h3 style="text-align: center; color: #333;">Rejected Reservation</h3>
+          <div style="overflow-x: auto; margin-top: 20px;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="background-color: #1d116e; color: white;">
+                  <th style="padding: 10px; text-align: left;">Username</th>
+                  <th style="padding: 10px; text-align: left;">Date of Rejection</th>
+                </tr>
+              </thead>
+              <tbody id="rejected-reservations" style="background-color: #7A73D1;">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <div style="text-align: center;">
         <button id="refresh-button" style="background-color: #6A5ACD; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em;">Refresh Data</button>
       </div>

@@ -36,6 +36,7 @@ let currentDate = new Date();
                 cell.style.border = '1px solid #ccc';
                 cell.style.cursor = 'pointer';
                 cell.style.backgroundColor = '#ffffff';
+                cell.style.color = (day === 2 || day === 9 || day === 16 || day === 23 || day === 30 || day === 31) ? 'red' : '#0000FF'; // Pula ni ha? pula!
                 
                 const dateStr = `${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,'0')}-${day.toString().padStart(2,'0')}`;
                 if (events[dateStr]) {
