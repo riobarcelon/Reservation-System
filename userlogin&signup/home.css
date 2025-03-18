@@ -631,3 +631,12 @@ footer {
 .dropdown-content a:hover {
   background: #f5f5f5;
 }
+
+.fa-solid {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.fa-solid:active {
+  transform: scale(1.2);
+  color: #FFD700;
+}
