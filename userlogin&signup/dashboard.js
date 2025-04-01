@@ -108,4 +108,16 @@ function populateRejectedReservations(rejected) {
 }
 
 // Tawagan ang loadUserData function kapag nag-load ang page
-document.addEventListener('DOMContentLoaded', loadUserData); 
+document.addEventListener('DOMContentLoaded', loadUserData);
+
+function fetchPendingReservations() {
+    fetch('/userlogin&signup/api/user/reservations.php') // Siguraduhing tama ang path
+        .then(response => response.json())
+        .then(data => {
+            populatePendingReservations(data.pending);
+        })
+        .catch(error => console.error('Error fetching pending reservations:', error));
+}
+
+// Tawagan ang fetchPendingReservations function kapag nag-load ang page
+document.addEventListener('DOMContentLoaded', fetchPendingReservations);

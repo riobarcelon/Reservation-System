@@ -69,3 +69,46 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  document.getElementById('reservation-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(this); // Get the form data
+
+    fetch('/userlogin&signup/api/user/reservations.php', { // Ensure the path is correct
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Reservation submitted successfully!');
+            // Optionally, refresh the dashboard or clear the form
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error submitting reservation:', error);
+        alert('Error submitting reservation');
+    });
+  });
+
+function fetchPendingReservations() {
+    console.log('Fetching pending reservations...');
+    fetch('/api/user/reservations')
+        .then(response => {
+            console.log('Response received:', response);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data received:', data);
+            populatePendingReservations(data.pending);
+        })
+        .catch(error => console.error('Error fetching pending reservations:', error));
+}

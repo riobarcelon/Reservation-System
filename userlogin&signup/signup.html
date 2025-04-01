@@ -7,27 +7,40 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="signup.css">
     <title>Sign Up | Online Reservation</title>
+    <script>
+        function showNotification() {
+            const notification = document.createElement('div');
+            notification.className = 'alert alert-success text-center';
+            notification.innerText = 'Signing Up successfully';
+            document.getElementById('notificationArea').appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+                window.location.href = 'index.html'; // Redirect to login page after notification
+            }, 3000);
+        }
+    </script>
 </head>
 <body>
+    <div id="notificationArea" style="text-align: center;"></div>
     <div class="Signup-Form">
         <h1 class="Title">Sign Up</h1>
-        <form id="signupForm" method="POST" action="signup.php">
+        <form id="signupForm" method="POST" action="signup.php" onsubmit="showNotification(); return false;">
             <div class="Info">
-                <label for="text">Firstname</label>
+                <label for="fname">Firstname</label>
                 <input type="text" name="fname" placeholder="Firstname" id="fname" required>
-                <label for="text">Lastname</label>
+                <label for="lname">Lastname</label>
                 <input type="text" name="lname" placeholder="Lastname" id="lname" required>
             </div>
             <div class="Pass">
-                <label for="text">Username</label>
+                <label for="usrname">Username</label>
                 <input type="text" name="usrname" placeholder="Username" id="usrname" required>
-                <label for="password">Password</label>
+                <label for="pass">Password</label>
                 <input type="password" name="pass" placeholder="Password" id="pass" required>
-                <label for="password">Confirm Password</label>
+                <label for="confirmpass">Confirm Password</label>
                 <input type="password" name="confirmpass" placeholder="Confirm password" id="confirmpass" required>
             </div>
             <div class="Signup">
-                <button type="submit" class="signin-btn">Sign In</button>
+                <button type="submit" class="signin-btn">Sign Up</button>
                 <p>Already have an account? <a href="index.html" style="color: #4b6cb7;">Click here!</a></p>
             </div>
         </form>
@@ -35,4 +48,5 @@
     <footer style="text-align: center; position: absolute; bottom: 0; width: 100%;">
         <p>&copy;2025 Kiwii. All Rights Reserved.</p>
     </footer>
+</body>
 </html>
